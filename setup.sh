@@ -1,13 +1,13 @@
 #!/bin/bash
 #
-# bash script to install SubEnum's dependencies 
+# bash script to install SubEnum's dependencies
 #
 
 GOlang() {
 	printf "                                \r"
 	sys=$(uname -m)
 	#LATEST=$(curl -s 'https://go.dev/VERSION?m=text') # https://golang.org/dl/$LATEST.linux-amd64.tar.gz
-	[ $sys == "x86_64" ] && wget https://go.dev/dl/go1.17.13.linux-amd64.tar.gz -O golang.tar.gz &>/dev/null || wget https://golang.org/dl/go1.17.13.linux-386.tar.gz -O golang.tar.gz &>/dev/null
+	[ $sys == "x86_64" ] && wget https://go.dev/dl/go1.21.3.linux-amd64.tar.gz -O golang.tar.gz &>/dev/null || wget https://golang.org/dl/go1.21.3.linux-386.tar.gz -O golang.tar.gz &>/dev/null
 	sudo tar -C /usr/local -xzf golang.tar.gz
 	export GOROOT=/usr/local/go
 	export GOPATH=$HOME/go
@@ -16,13 +16,13 @@ GOlang() {
  	echo 'export GOROOT=/usr/local/go'
   	echo 'export GOPATH=$HOME/go'
    	echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin'
-	
+
 	printf "[+] Golang Installed !.\n"
 }
 
 Findomain() {
 	printf "                                \r"
-	wget https://github.com/Findomain/Findomain/releases/download/8.2.1/findomain-linux.zip &>/dev/null
+	wget https://github.com/Findomain/Findomain/releases/download/8.2.1/findomain-linux.zip 
 	unzip findomain-linux.zip
  	rm findomain-linux.zip
 	chmod +x findomain
@@ -31,25 +31,25 @@ Findomain() {
 
 Subfinder() {
 	printf "                                \r"
-	go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest &>/dev/null
+	go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest 
 	printf "[+] Subfinder Installed !.\n"
 }
 
 Amass() {
 	printf "                                \r"
-	go install -v github.com/owasp-amass/amass/v4/...@master &>/dev/null
+	go install -v github.com/owasp-amass/amass/v4/...@master 
 	printf "[+] Amass Installed !.\n"
 }
 
 Assetfinder() {
 	printf "                                \r"
-	go install github.com/tomnomnom/assetfinder@latest &>/dev/null
+	go install github.com/tomnomnom/assetfinder@latest 
 	printf "[+] Assetfinder Installed !.\n"
 }
 
 Httprobe() {
 	printf "                                \r"
-	go install github.com/tomnomnom/httprobe@latest &>/dev/null
+	go install github.com/tomnomnom/httprobe@latest 
 	printf "[+] Httprobe Installed !.\n"
 }
 
@@ -61,11 +61,11 @@ Parallel() {
 
 Anew() {
 	printf "                                \r"
-	go install -v github.com/tomnomnom/anew@latest &>/dev/null
+	go install -v github.com/tomnomnom/anew@latest 
 	printf "[+] Anew Installed !.\n"
 }
 
-hash go 2>/dev/null && printf "[!] Golang is already installed.\n" || { printf "[+] Installing GOlang!" && GOlang; } 
+hash go 2>/dev/null && printf "[!] Golang is already installed.\n" || { printf "[+] Installing GOlang!" && GOlang; }
 
 
 hash findomain 2>/dev/null && printf "[!] Findomain is already installed.\n" || { printf "[+] Installing Findomain!" && Findomain; }
